@@ -25,3 +25,47 @@ export const metricCardData = [
          info: "This is the metric that is is on queue to be attended to"
     },
 ]
+
+export const divisionSummaryData = [
+    {
+        icon: 'phone',
+        text:'0801 234 5678',
+    },
+    {
+        icon: 'mail',
+        text:'asbfefr@gmail.com',
+    },
+    {
+        icon: 'location',
+        text:'Mojidi, Lagos',
+    },
+    {
+        icon: 'journal',
+        text:'2 Journal entries',
+        isLink:true,
+    },
+    {
+        icon: 'finger-print',
+        text:'24 fingerprints enrolled',
+    },
+
+]
+
+export const moduleHistoryLog = [
+    {
+        activity: `Searched "Journal Entries" on Division module`,
+        date: '22:10 15/09/2020',
+        platform:'Web'
+    },
+    {
+        activity: `Searched “Fingerprint record” on Division module`,
+        date: '22:10 15/09/2020',
+        platform:'Web'
+    },
+    {
+        activity: `Searched "Journal Entries" on Division module`,
+        date: '22:10 15/09/2020',
+        platform:'Web'
+    },
+
+]
