@@ -62,6 +62,7 @@ padding: 0 22px 4px 22px;
     :hover {
         background-color: #DEEFFF;
         box-shadow: 0px 4px 0px #006FD6;
+        color:#006FD6;
         .svg-body {
             fill:#006FD6;
         };
@@ -70,7 +71,7 @@ padding: 0 22px 4px 22px;
 
 .nav__nav_link__active {
     background-color: #DEEFFF;
-    /* border-bottom: 4px solid#006FD6; */
+    color:#006FD6;
     box-shadow: 0px 4px 0px #006FD6;
     .svg-body {
         fill:#006FD6;
@@ -128,7 +129,6 @@ position: relative;
     }
 }
 .breadcrumb_module{
-    margin-left: 5px;
 }
 `
 
@@ -146,8 +146,13 @@ margin: 0 32px;
 export const StyledProfileLogo = styled(ProfileLogo)`
 `;
 export const StyledProfileMenuArrow = styled(ProfileMenuLogo)`
-margin-left:5px;
+margin-left:${p => p.isBreadCrumb !== true && '5px'};
 transform:${p => p.isBreadCrumb && 'rotate(270deg)'};
+margin: ${p => p.isBreadCrumb && '0 5px'};
+
+.svg-body {
+        fill:#0A5685;
+    };
 `;
 
 export const NavBar = () => {
