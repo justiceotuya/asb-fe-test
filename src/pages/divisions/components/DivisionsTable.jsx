@@ -53,6 +53,10 @@ box-shadow: inset 0px -1px 0px rgba(183, 183, 183, 0.25);
 
 
 .table_checkbox__container {
+    input {
+        margin:0;
+        margin-right:10px;
+    }
 }
 .table_data__name{
     font-size: 14px;
@@ -94,6 +98,20 @@ display: inline;
         font-size: 12px;
         line-height: 19px;
         color: #25213B;
+        margin-left: 12px;
+        position:relative;
+
+        :after {
+            content: '';
+            display:table;
+            width:6px;
+            height: 6px;
+            background: #25213B;
+            border-radius: 100%;
+    position: absolute;
+    top: 7px;
+    left: -10px;
+        }
 
     }
     .entries_group{
@@ -128,7 +146,6 @@ margin-left:10px;
 `
 export const StyledMenu = styled(Menu)``
 export const StyledMore = styled(More)`
-margin-left: 20px;
 `
 export const StyledArrowDownRight = styled(ArrowDownRight)``
 export const StyledArrowLeft = styled(ArrowLeft)``
