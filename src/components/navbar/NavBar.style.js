@@ -42,7 +42,7 @@ padding: 0 22px 4px 22px;
 .nav__nav_links{
     margin-left: 50px;
         display:none;
-    @media ${device.laptop}{
+    @media (min-width:900px){
         display: flex;
     }
 }

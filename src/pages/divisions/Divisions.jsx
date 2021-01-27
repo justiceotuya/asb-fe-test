@@ -9,6 +9,7 @@ display: grid;
 grid-column-gap: 26px;
 grid-row-gap: 26px;
 padding: 0 18px;
+margin-bottom:25px;
 grid-template-columns: unset;
     grid-template-rows: unset;
 @media ${device.tablet}{

@@ -12,7 +12,7 @@ padding:12px;
     grid-area: 2 / 3 / 4 / 5;
 }
 @media ${device.laptop}{
-    grid-area: 4 / 1 / 6 / 2;
+    grid-area: 4 / 1 / 3 / 2;
 }
 
 .modules_history__header{
