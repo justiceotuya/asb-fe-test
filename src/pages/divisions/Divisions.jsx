@@ -9,11 +9,11 @@ export const Divisions = () => {
     const [searchInput, setSearchInput] = useState('')
     const [isAllChecked, setIsAllChecked] = useState(false) //used to handle checking and unchecking overall table
     const [tableData, setTableData] = useState({ loading: false, error: null, result: [] })
-
+    const [filterDataStore, setFilterDataStore] = useState([])
     //handles the searching/filtering of the table
     const handleSearch = (e) => {
-        let newData = data.filter(item => {
-            return item.name.toLowerCase().includes(e.target.value.toLowerCase())
+        let newData = filterDataStore.filter(item => {
+            return item.name.toLowerCase().includes(e.target.value.toLowerCase())|| item.street.toLowerCase().includes(e.target.value.toLowerCase()) || item.location.toLowerCase().includes(e.target.value.toLowerCase())
         });
         setSearchInput(e.target.value)
         setTableData({ ...tableData, result: newData })
@@ -26,6 +26,7 @@ export const Divisions = () => {
             //add checked state to data
             let modifiedData = data.map(item => ({ ...item, checked: false }))
             setTableData({ ...tableData, result: modifiedData, loading: false })
+            setFilterDataStore([...modifiedData])
         }
         //simulate async call
         setTimeout(() => {
@@ -44,10 +45,10 @@ export const Divisions = () => {
         handleCheckAllData()
     }, [tableData])
 
-/**
- * This handles checking the a table row
- * @param {String} id The id of a table row
- */
+    /**
+     * This handles checking the a table row
+     * @param {String} id The id of a table row
+     */
     const handleCheckRow = (id) => {
         const newData = tableData.result.map(item => {
             if (item.id === id) {
@@ -71,6 +72,7 @@ export const Divisions = () => {
             newResultData = tableData.result.map(item => ({ ...item, checked: true }))
         }
         setTableData({ ...tableData, result: newResultData })
+        // setFilterDataStore([...newResultData])
         setIsAllChecked(!isAllChecked)
 
 
