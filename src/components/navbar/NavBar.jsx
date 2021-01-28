@@ -15,7 +15,9 @@ import {
 } from './NavBar.style'
 
 
-export const NavBar = () => {
+export const NavBar = (props) => {
+    const {handleSearch, searchInput} = props
+
 const [isSideNavOpen, setIsSideNavOpen] = useState(false)
 
 const handleToggleSideNav = () => {
@@ -57,6 +59,7 @@ React.useEffect(() => {
     }
 
 
+
     return (
         <StyledNavBar
         isSideNavOpen={isSideNavOpen}
@@ -77,7 +80,13 @@ React.useEffect(() => {
                         {
                             navigationLinks.map(link => {
                                 const { text, to } = link
-                                return <NavLink to={to} key={text} className="nav__nav_link" activeClassName="nav__nav_link__active" exact>
+                                return <NavLink
+                                to={to}
+                                key={text}
+                                className="nav__nav_link"
+                                activeClassName="nav__nav_link__active"
+                                data-testid={`test-${text}`}
+                                exact>
                                     {handleIconSelection(text)} <span>{text}</span>
                                 </NavLink>
                             })
@@ -87,7 +96,12 @@ React.useEffect(() => {
 
                 <div className="nav__nav_right">
                     <div className="nav_nav__search">
-                        <input type="text" className="nav_search" />
+                        <input type="text"
+                        className="nav_search"
+                        onChange={handleSearch}
+                        value={searchInput}
+                        data-testid="nav-input"
+                        />
                         <StyledSearchLogo />
                     </div>
                     <StyledNotificationLogo role="button" tabIndex='0' />
@@ -102,7 +116,7 @@ React.useEffect(() => {
             <div className="nav__breadcrumb">
                 <Link to="/">{window.location.pathname.replace('/', '') || 'Home'}</Link>
 
-                <StyledProfileMenuArrow isBreadCrumb={true} />
+                <StyledProfileMenuArrow isbreadcrumb='true' />
 
                 <Link to="/" className="breadcrumb_module">Module</Link>
             </div>

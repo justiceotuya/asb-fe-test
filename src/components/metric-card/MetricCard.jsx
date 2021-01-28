@@ -7,7 +7,7 @@ export const MetricCard = ({data}) => {
         <StyledMetricCard info={info}>
             <div className="metric__metric_number">
             <p>{stat}</p>
-            <StyledInfoIcon/>
+            <StyledInfoIcon data-testid={`info-${title}`}/>
             <div className="metric__info">{info}</div>
             </div>
             <div className="metric__metric_title">

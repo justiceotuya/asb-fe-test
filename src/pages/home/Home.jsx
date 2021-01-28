@@ -5,7 +5,7 @@ import { Layout } from '../../components'
 export const Home = () => {
     return (
         <Layout>
-            <p>This Page is under construction you can go tho the <Link to="/divisions">Divisions Page</Link> </p>
+            <p>This Page is under construction you can go to the <Link to="/divisions">Divisions Page</Link> </p>
         </Layout>
     )
 }

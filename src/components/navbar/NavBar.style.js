@@ -218,9 +218,9 @@ export const StyledDivisionsLogo = styled(DivisionsIcon)`
 };
 `;
 export const StyledProfileMenuArrow = styled(ProfileMenuLogo)`
-margin-left:${p => p.isBreadCrumb !== true && '5px'};
-transform:${p => p.isBreadCrumb && 'rotate(270deg)'};
-margin: ${p => p.isBreadCrumb && '0 5px'};
+margin-left:${p => p.isbreadcrumb !== true && '5px'};
+transform:${p => p.isbreadcrumb && 'rotate(270deg)'};
+margin: ${p => p.isbreadcrumb && '0 5px'};
 
 .svg-body {
         fill:#0A5685;

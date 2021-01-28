@@ -63,7 +63,7 @@ export const moduleHistoryLog = [
         platform:'Web'
     },
     {
-        activity: `Searched "Journal Entries" on Division module`,
+        activity: `Searched "Journal Entries Today" on Division module`,
         date: '22:10 15/09/2020',
         platform:'Web'
     },

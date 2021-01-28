@@ -21,7 +21,7 @@ export const StatisticsCards = () => {
         <StyledStatisticsCards>
             {
                 metricCardData.map(metric => {
-                    return <MetricCard data={metric} />
+                    return <MetricCard data={metric} key={metric.info}/>
                 })
             }
         </StyledStatisticsCards>
