@@ -6,10 +6,19 @@ import { ReactComponent as ProfileLogo } from '../../assets/icons/profile.svg'
 import { ReactComponent as ProfileMenuLogo } from '../../assets/icons/down.svg'
 import { ReactComponent as HomeIcon } from '../../assets/icons/home.svg'
 import { ReactComponent as EntriesIcon } from '../../assets/icons/entries.svg'
+import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg'
 import { ReactComponent as DivisionsIcon } from '../../assets/icons/divisions.svg'
 import { device } from '../../device'
 
 export const StyledNavBar = styled.nav`
+
+@media (max-width: 1023px){
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: #fff;
+}
+
 .navbar__container {
     box-shadow: inset 0px -1px 0px rgba(220, 225, 231, 0.572143);
     background: #FFFFFF;
@@ -28,6 +37,11 @@ padding: 0 22px 4px 22px;
     p{
         font-size: 14px;
         color: #000000;
+        display:none;
+
+        @media ${device.laptop}{
+            display: block
+        }
     }
 
     :hover {
@@ -40,10 +54,15 @@ padding: 0 22px 4px 22px;
 }
 
 .nav__nav_links{
-    margin-left: 50px;
+    margin-left: 10px;
         display:none;
-    @media (min-width:900px){
+        @media (min-width:450px){
         display: flex;
+        margin-left: 10px;
+    }
+    @media (min-width:600px){
+        display: flex;
+        margin-left: 50px;
     }
 }
 
@@ -139,6 +158,21 @@ display: none;
 }
 .breadcrumb_module{
 }
+.nav__mobile_navbar{
+    position: fixed;
+    left: ${p => p.isSideNavOpen ? '0px' : '-250px'};
+    transition: left .2s ease-in-out;
+    top: 48px;
+    width: 250px;
+    z-index: 3;
+    height: 100%;
+    background: white;
+    box-shadow: 0px 4px 30px rgb(192 192 192 / 25%);
+
+    @media (min-width: 450px) {
+        display:none
+    }
+}
 `
 
 export const StyledBrandLogo = styled(Logo)`
@@ -169,12 +203,18 @@ fill:red;
 `;
 export const StyledEntriesLogo = styled(EntriesIcon)`
 &:hover .svg-body {
-fill:red;
+};`
+export const StyledMenuLogo = styled(MenuIcon)`
+height:18px;
+width:18px;
+@media (min-width: 499px){
+    display:none
+}
+&:hover .svg-body {
 };
 `;
 export const StyledDivisionsLogo = styled(DivisionsIcon)`
 &:hover .svg-body {
-fill:red;
 };
 `;
 export const StyledProfileMenuArrow = styled(ProfileMenuLogo)`

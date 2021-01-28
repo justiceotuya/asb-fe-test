@@ -14,6 +14,8 @@ export const StyledDivisionsTable = styled.div`
     border-radius: 6px;
     /* padding: 17px; */
     display:none;
+    height: 600px;
+  overflow-y: scroll;
 
     @media ${device.tablet}{
         display: block;
@@ -35,8 +37,12 @@ td,th{
     /* padding: 15px 20px; */
 }
 td {
-  padding: 10px;
-  vertical-align: middle;
+    padding: 10px 5px;
+    vertical-align: middle;
+
+    @media (min-width: 1000px){
+      padding: 10px;
+  }
 }
 th{
     font-weight: 500;
@@ -45,6 +51,15 @@ th{
     text-transform: uppercase;
     color: #899198;
     padding: 15px 10px;
+    background: #F3F6F9;
+    position: sticky;
+  z-index: 2;
+  top: 0;
+
+  input {
+      width:15px;
+      height:15px;
+  }
 }
 `;
 export const StyledTableRow = styled.tr`
@@ -55,7 +70,9 @@ box-shadow: inset 0px -1px 0px rgba(183, 183, 183, 0.25);
 .table_checkbox__container {
     input {
         margin:0;
-        margin-right:10px;
+        height:15px;
+        width:15px;
+        /* margin-right:10px; */
     }
 }
 .table_data__name{
@@ -144,8 +161,12 @@ margin-left:10px;
 }
 }
 `
-export const StyledMenu = styled(Menu)``
+export const StyledMenu = styled(Menu)`
+cursor: pointer;
+`
 export const StyledMore = styled(More)`
+position: relative;
+left: 10px;
 `
 export const StyledArrowDownRight = styled(ArrowDownRight)``
 export const StyledArrowLeft = styled(ArrowLeft)``

@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { navigationLinks } from './constant'
 import {
@@ -6,6 +6,7 @@ import {
     StyledHomeLogo,
     StyledEntriesLogo,
     StyledDivisionsLogo,
+    StyledMenuLogo,
     StyledBrandLogo,
     StyledSearchLogo,
     StyledNotificationLogo,
@@ -15,6 +16,33 @@ import {
 
 
 export const NavBar = () => {
+const [isSideNavOpen, setIsSideNavOpen] = useState(false)
+
+const handleToggleSideNav = () => {
+    setIsSideNavOpen(!isSideNavOpen)
+}
+
+const handleKeyPressOnNavMenu = (e) => {
+    if(e.key === ' ' || e.key === 'Enter'){
+        handleToggleSideNav()
+    }
+}
+
+React.useEffect(() => {
+   const handleEscKeyPress = () => {
+       if(!isSideNavOpen){
+           return
+        }
+       window.addEventListener('keyup', (e) => {
+           e.key=== 'Escape' && setIsSideNavOpen(false)
+       })
+   }
+
+   handleEscKeyPress()
+
+   return () => window.removeEventListener("keyup", handleEscKeyPress);
+}, [isSideNavOpen])
+
     const handleIconSelection = (text) => {
         switch (text) {
             case 'Home':
@@ -30,8 +58,16 @@ export const NavBar = () => {
 
 
     return (
-        <StyledNavBar>
+        <StyledNavBar
+        isSideNavOpen={isSideNavOpen}
+        >
             <div className="navbar__container">
+                    <StyledMenuLogo
+                    role="button"
+                    tabIndex="0"
+                    onClick={handleToggleSideNav}
+                    onKeyDown = {handleKeyPressOnNavMenu}
+                    />
                 <div className="nav__nav_left">
                     <Link to="/" className="nav__logo" alt="home">
                         <StyledBrandLogo />
@@ -70,6 +106,23 @@ export const NavBar = () => {
 
                 <Link to="/" className="breadcrumb_module">Module</Link>
             </div>
+
+            <nav className="nav__mobile_navbar">
+            {
+                            navigationLinks.map(link => {
+                                const { text, to } = link
+                                return <NavLink
+                                to={to}
+                                key={text}
+                                className="nav__nav_link"
+                                activeClassName="nav__nav_link__active"
+                                onClick={handleToggleSideNav}
+                                exact>
+                                    {handleIconSelection(text)} <span>{text}</span>
+                                </NavLink>
+                            })
+                        }
+            </nav>
         </StyledNavBar>
     )
 }
