@@ -11,9 +11,10 @@ export const Divisions = () => {
     const [tableData, setTableData] = useState({ loading: false, error: null, result: [] })
     const [filterDataStore, setFilterDataStore] = useState([])
     //handles the searching/filtering of the table
+
     const handleSearch = (e) => {
         let newData = filterDataStore.filter(item => {
-            return item.name.toLowerCase().includes(e.target.value.toLowerCase())|| item.street.toLowerCase().includes(e.target.value.toLowerCase()) || item.location.toLowerCase().includes(e.target.value.toLowerCase())
+            return item.firstname.toLowerCase().includes(e.target.value.toLowerCase())|| item.lastname.toLowerCase().includes(e.target.value.toLowerCase()) || item.city.toLowerCase().includes(e.target.value.toLowerCase())|| item.street.toLowerCase().includes(e.target.value.toLowerCase()) || item.streetName.toLowerCase().includes(e.target.value.toLowerCase())
         });
         setSearchInput(e.target.value)
         setTableData({ ...tableData, result: newData })
@@ -22,16 +23,25 @@ export const Divisions = () => {
     //handles loading table data
     useEffect(() => {
         setTableData({ ...tableData, loading: true })
-        const handlePopulateData = () => {
-            //add checked state to data
-            let modifiedData = data.map(item => ({ ...item, checked: false }))
-            setTableData({ ...tableData, result: modifiedData, loading: false })
-            setFilterDataStore([...modifiedData])
+        const handlePopulateData = async() => {
+
+            const URL = 'https://fakerapi.it/api/v1/custom?_quantity=200&firstname=firstName&lastname=lastName&city=city&card_expiration=card_expiration&streetName=streetName&street=streetAddress&phone=phone'
+            try{
+                let request = await fetch(URL);
+let response = await request.json()
+//add checked state to data
+let modifiedData = response.data.map(item => ({ ...item, checked: false }))
+setTableData({ ...tableData, result: modifiedData, loading: false })
+setFilterDataStore([...modifiedData])
+            }
+            catch(e){
+                setTableData({ ...tableData, loading: false, error:e.message, data: null })
+            }
+
         }
         //simulate async call
-        setTimeout(() => {
             handlePopulateData()
-        }, 1000);
+
     }, [])
 
     //handles checking and unchecking of all table row listens to changes in

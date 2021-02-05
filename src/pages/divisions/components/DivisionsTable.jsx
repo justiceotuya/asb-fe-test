@@ -29,6 +29,24 @@ export const DivisionsTable = ({
         }
     }
 
+const handleCheckIssues = (expirationDate) => {
+
+    // get todays date and extract year and month
+        let today = new Date().toISOString().split('T')[0]
+        let thisYear = today.slice(2,4)
+        let thisMonth = today.split('-')[1]
+
+        expirationDate = expirationDate.split('/')
+        let expiryMonth = expirationDate[0]
+        let expiryYear = expirationDate[1]
+
+
+        if(thisYear > expiryYear){
+            return '1 Issue Found'
+        }else if(thisYear === expiryYear && thisMonth >= expiryMonth){
+            return '1 Issue Found'
+        }else return 'No Issue Found'
+    }
 
 
 
@@ -60,29 +78,30 @@ export const DivisionsTable = ({
                     <tbody>
                         {
                             result.map(data => {
-                                const { id, name, street, location, status, entries_stat, entries_group, risk_profile, checked } = data
+                                const {  firstname, lastname,  city, street, streetName,  phone, status, checked, card_expiration } = data
+
                                 return (
                                     <StyledTableRow
-                                        key={id}
-                                        status={status}
-                                        riskProfile={risk_profile}
+                                        key={phone}
+                                        status={handleCheckIssues(card_expiration)}
+                                        riskProfile='Mid Risk'
                                         tabIndex="0"
                                     >
                                         <td className="table_checkbox__container">
-                                            <input type="checkbox" name="" id="" checked={checked} onChange={() => handleCheckRow(id)} />
+                                            <input type="checkbox" name="" id="" checked={checked} onChange={() => handleCheckRow(phone)} />
                                             <StyledMore tabIndex="0" />
                                         </td>
-                                        <td className="table_data__name">{name}</td>
+                                        <td className="table_data__name">{`${firstname} ${lastname}`}</td>
                                         <td className="table_data__address">
-                                            <p className="data__state">{location}</p>
-                                            <p className="data__street">{street}</p></td>
-                                        <td className="table_data__status"><p>{status}</p></td>
+                                            <p className="data__state">{city}</p>
+                                            <p className="data__street">{`${street} ${streetName}`}</p></td>
+                                        <td className="table_data__status"><p>{handleCheckIssues(card_expiration)}</p></td>
                                         <td className="table_data__entries">
-                                            <p className="entries_stat">{entries_stat}</p>
-                                            <p className="entries_group">{entries_group}</p></td>
+                                            <p className="entries_stat">test state</p>
+                                            <p className="entries_group">Heterogenous</p></td>
                                         <td className="table_data__risk_profile">
-                                            <div>{handleArrowSelection(risk_profile)}</div>
-                                            <p className="risk_value">{risk_profile}</p>
+                                            <div>{handleArrowSelection("Mid Risk")}</div>
+                                            <p className="risk_value">Mid risk</p>
                                         </td>
                                         <td><StyledMenu tabIndex="0" /></td>
                                     </StyledTableRow>
