@@ -94,7 +94,7 @@ const handleCheckIssues = (expirationDate) => {
                                         <td className="table_data__name">{`${firstname} ${lastname}`}</td>
                                         <td className="table_data__address">
                                             <p className="data__state">{city}</p>
-                                            <p className="data__street">{`${street} ${streetName}`}</p></td>
+                                            <p className="data__street">{`${street}, ${streetName}`}</p></td>
                                         <td className="table_data__status"><p>{handleCheckIssues(card_expiration)}</p></td>
                                         <td className="table_data__entries">
                                             <p className="entries_stat">test state</p>
